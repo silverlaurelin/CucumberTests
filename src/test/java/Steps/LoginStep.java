@@ -1,7 +1,10 @@
 package Steps;
 
+import Base.BaseUtil;
+import Transformation.EmailTransformer;
+import Transformation.SummTransformer;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
+import cucumber.api.Transform;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -9,14 +12,21 @@ import cucumber.api.java.en.Then;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by administrator on 3/29/17.
- */
-public class LoginStep {
+public class LoginStep extends BaseUtil{
+
+
+    private  BaseUtil base;
+
+    public LoginStep(BaseUtil base) {
+        this.base = base;
+    }
+
+
     @Given( "^I navigate to the login page$")
     public void iNavigateToTheLoginPage() throws Throwable {
-            // Write code here that turns the phrase above into concrete actions
+        // Write code here that turns the phrase above into concrete actions
         System.out.println("I navigate to the login page");
+        System.out.println("***** the driver *****" + base.StepInfo);
 
     }
 
@@ -58,6 +68,20 @@ public class LoginStep {
         System.out.println("password is " + password);
 
     }
+
+    @And("^I enter the user email address as Email:([^\"]*)")
+    public void iEnterTheUserEmailAddressAsEmailAdmin(@Transform(EmailTransformer.class) String email) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println("!!!!!!the admin address is " + email + "!!!!");
+    }
+
+    @And("^I verify num of digits UA (\\d+)$")
+    public void iVerifyNumOfDigitsUA(@Transform(SummTransformer.class) int summ) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println("!!!!!!the summ  is " + summ + "!!!!");
+    }
+
+
 
     public class User
     {

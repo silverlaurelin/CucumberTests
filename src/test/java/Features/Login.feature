@@ -4,9 +4,12 @@ Feature: LoginFeature
 
   Scenario: Login with correct username and password
     Given I navigate to the login page
+    And I enter the user email address as Email:admin
+    And I verify num of digits UA 1000
+    And Step to check java 8
     And I enter the following for Login
-        | username | password      |
-        | admin    | adminpassword |
+      | username | password      |
+      | admin    | adminpassword |
 
     And I click login button
     Then I should see the userform page
@@ -24,5 +27,4 @@ Feature: LoginFeature
       |username|password     |
       |admin    |adminpassword|
       |admin2   |adminpassword|
-
 
